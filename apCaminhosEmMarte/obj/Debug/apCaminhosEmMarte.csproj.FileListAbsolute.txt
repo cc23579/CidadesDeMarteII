@@ -1,0 +1,10 @@
+D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apCaminhosEmMarte\bin\Debug\apCaminhosEmMarte.exe.config
+D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apCaminhosEmMarte\bin\Debug\apCaminhosEmMarte.exe
+D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apCaminhosEmMarte\bin\Debug\apCaminhosEmMarte.pdb
+D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.csproj.AssemblyReference.cache
+D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.FrmCaminhos.resources
+D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.Properties.Resources.resources
+D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.csproj.GenerateResource.cache
+D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.csproj.CoreCompileInputs.cache
+D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.exe
+D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.pdb
