@@ -8,3 +8,13 @@ D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apC
 D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.csproj.CoreCompileInputs.cache
 D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.exe
 D:\ProjetoMarteII\Copia RAr\Projeto III - Busca de Caminhos com Backtracking\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.pdb
+C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\bin\Debug\apCaminhosEmMarte.exe.config
+C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\bin\Debug\apCaminhosEmMarte.exe
+C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\bin\Debug\apCaminhosEmMarte.pdb
+C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.csproj.AssemblyReference.cache
+C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.FrmCaminhos.resources
+C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.Properties.Resources.resources
+C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.csproj.GenerateResource.cache
+C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.csproj.CoreCompileInputs.cache
+C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.exe
+C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.pdb

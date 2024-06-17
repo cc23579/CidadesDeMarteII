@@ -12,77 +12,78 @@ using System.Windows.Forms;
 
 namespace apCaminhosEmMarte
 {
-  public partial class FrmCaminhos : Form
-  {
-    public FrmCaminhos()
+    public partial class FrmCaminhos : Form
     {
-      InitializeComponent();
-    }
-
-    ITabelaDeHash<Cidade> tabela;
-
-    private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-    {
-
-    }
-
-    private void btnLerArquivo_Click(object sender, EventArgs e)
-    {
-      if (dlgAbrir.ShowDialog() == DialogResult.OK)
-      {
-        if (rbBucketHash.Checked)
-           tabela = new BucketHash<Cidade>();
-        else
-          if (rbHashLinear.Checked)
-             tabela = new HashLinear<Cidade>();
-          else 
-            if (rbHashQuadratico.Checked)
-               tabela = new HashQuadratico<Cidade>();
-            else
-              if (rbHashDuplo.Checked)
-                tabela = new HashDuplo<Cidade>();
-
-        var arquivo = new StreamReader(dlgAbrir.FileName);
-        while (! arquivo.EndOfStream) 
+        public FrmCaminhos()
         {
-          Cidade umaCidade = new Cidade();
-          umaCidade.LerRegistro(arquivo);
-          tabela.Inserir(umaCidade);
+            InitializeComponent();
         }
-        lsbCidades.Items.Clear();  // limpa o listBox
-        var asCidades = tabela.Conteudo();
-        foreach (Cidade cid in asCidades)
-          lsbCidades.Items.Add(cid);
-        arquivo.Close();
-      }
-    }
 
-    private void FrmCaminhos_FormClosing(object sender, FormClosingEventArgs e)
-    {
-      // abrir o arquivo para saida, se houver um arquivo selecionado
-      // obter todo o conteúdo da tabela de hash
-      // percorrer o conteúdo da tabela de hash, acessando
-      // cada cidade individualmente e usar esse objeto Cidade
-      // para gravar seus próprios dados no arquivo
-      // fechar o arquivo ao final do percurso
-    }
+        ITabelaDeHash<Cidade> tabela;
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void btnLerArquivo_Click(object sender, EventArgs e)
+        {
+            if (dlgAbrir.ShowDialog() == DialogResult.OK)
+            {
+                if (rbBucketHash.Checked)
+                    tabela = new BucketHash<Cidade>();
+                else
+                  if (rbHashLinear.Checked)
+                    tabela = new HashLinear<Cidade>();
+                else
+                    if (rbHashQuadratico.Checked)
+                    tabela = new HashQuadratico<Cidade>();
+                else
+                      if (rbHashDuplo.Checked)
+                    tabela = new HashDuplo<Cidade>();
+
+                var arquivo = new StreamReader(dlgAbrir.FileName);
+                while (!arquivo.EndOfStream)
+                {
+                    Cidade umaCidade = new Cidade();
+                    umaCidade.LerRegistro(arquivo);
+                    tabela.Inserir(umaCidade);
+                }
+                lsbCidades.Items.Clear();  // limpa o listBox
+                var asCidades = tabela.Conteudo();
+                foreach (Cidade cid in asCidades)
+                    lsbCidades.Items.Add(cid);
+                arquivo.Close();
+            }
+        }
+
+        private void FrmCaminhos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // abrir o arquivo para saida, se houver um arquivo selecionado
+            // obter todo o conteúdo da tabela de hash
+            // percorrer o conteúdo da tabela de hash, acessando
+            // cada cidade individualmente e usar esse objeto Cidade
+            // para gravar seus próprios dados no arquivo
+            // fechar o arquivo ao final do percurso
+        }
 
         //variável que representa o grafo
         GrafoBacktracking grafo;
 
-    private void FrmCaminhos_Load(object sender, EventArgs e)
-    {
-        //Instancia a classe GrafoBacktracking com o arquivo de caminhos de Marte
-        String nomeArquivo = "CaminhosMarte.txt";
-        grafo = new GrafoBacktracking(nomeArquivo);
+        private void FrmCaminhos_Load(object sender, EventArgs e) ///AHAHDHsakljfsaiugdsiuogia
+        {
+            //Instancia a classe GrafoBacktracking com o arquivo de caminhos de Marte
+            string nomeDoArquivo = "CaminhoEntreCidades.txt";
+            grafo = new GrafoBacktracking(nomeDoArquivo);
 
         }
 
-    Cidade[] asCidades;
-    int quantasCidades;   // tamanho lógico
+        Cidade[] asCidades;
+        int quantasCidades;   // tamanho lógico
 
         private void tpCaminhos_Enter(object sender, EventArgs e)
         {
+          
             asCidades = new Cidade[25];
             quantasCidades = 0;
 
@@ -112,17 +113,19 @@ namespace apCaminhosEmMarte
                 cbxOrigem.Items.Clear();
                 cbxDestino.Items.Clear();
 
-                // Adicionar apenas o nome das cidades nos ComboBoxes
-                foreach (Cidade cidade in asCidades)
-                {
-                    cbxOrigem.Items.Add(cidade);
-                    cbxDestino.Items.Add(cidade);
-                }
+                // Adicionar nome das cidades nos ComboBoxes referenciando o objeto
+
             }
 
-
-        }
-
+            for (int i = 0; i < quantasCidades; i++)
+            {
+                if (asCidades[i] != null)
+                {
+                    cbxOrigem.Items.Add(asCidades[i].NomeCidade);
+                    cbxDestino.Items.Add(asCidades[i].NomeCidade);
+                }
+            }
+    }
 
         private void OrdenarCidades()
     {
@@ -174,7 +177,7 @@ namespace apCaminhosEmMarte
             if (cidadeOrigem != null && cidadeDestino != null)
             {
                 grafo.AlterarDistancia(cidadeOrigem, cidadeDestino, novaDistancia);
-                // Aqui você pode adicionar código adicional após alterar a distância, se necessário
+               
             }
             else
             {
@@ -190,7 +193,7 @@ namespace apCaminhosEmMarte
             if (cidadeOrigem != null && cidadeDestino != null)
             {
                 grafo.ExcluirCaminho(cidadeOrigem, cidadeDestino);
-                // Aqui você pode adicionar código adicional após excluir o caminho, se necessário
+               
             }
             else
             {
@@ -198,6 +201,6 @@ namespace apCaminhosEmMarte
             }
         }
 
-       
+      
     }
 }
