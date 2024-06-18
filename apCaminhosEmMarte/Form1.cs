@@ -70,7 +70,7 @@ namespace apCaminhosEmMarte
         //variável que representa o grafo
         GrafoBacktracking grafo;
 
-        private void FrmCaminhos_Load(object sender, EventArgs e) ///AHAHDHsakljfsaiugdsiuogia
+        private void FrmCaminhos_Load(object sender, EventArgs e) //Aqui esta dando arquivo não encontrado
         {
             //Instancia a classe GrafoBacktracking com o arquivo de caminhos de Marte
             string nomeDoArquivo = "CaminhoEntreCidades.txt";
@@ -201,6 +201,14 @@ namespace apCaminhosEmMarte
             }
         }
 
-      
+        private void btnBuscarCaminhos_Click(object sender, EventArgs e)
+        {
+            var origem = cbxOrigem.SelectedIndex;
+            var destino = cbxDestino.SelectedIndex;
+
+
+            grafo.BuscarCaminho(origem, destino, lsbCaminhos, dgvMelhorCaminho);
+
+        }
     }
 }

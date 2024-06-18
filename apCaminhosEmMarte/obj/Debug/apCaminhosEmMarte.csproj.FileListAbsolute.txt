@@ -18,3 +18,13 @@ C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug
 C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.csproj.CoreCompileInputs.cache
 C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.exe
 C:\Users\u23579\Documents\ProjetoII\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.pdb
+C:\Users\igorr\Documents\Cotuca\ProjetoMarte2\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.csproj.AssemblyReference.cache
+C:\Users\igorr\Documents\Cotuca\ProjetoMarte2\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.FrmCaminhos.resources
+C:\Users\igorr\Documents\Cotuca\ProjetoMarte2\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.Properties.Resources.resources
+C:\Users\igorr\Documents\Cotuca\ProjetoMarte2\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.csproj.GenerateResource.cache
+C:\Users\igorr\Documents\Cotuca\ProjetoMarte2\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.csproj.CoreCompileInputs.cache
+C:\Users\igorr\Documents\Cotuca\ProjetoMarte2\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.exe
+C:\Users\igorr\Documents\Cotuca\ProjetoMarte2\CidadesDeMarteII\apCaminhosEmMarte\obj\Debug\apCaminhosEmMarte.pdb
+C:\Users\igorr\Documents\Cotuca\ProjetoMarte2\CidadesDeMarteII\apCaminhosEmMarte\bin\Debug\apCaminhosEmMarte.exe.config
+C:\Users\igorr\Documents\Cotuca\ProjetoMarte2\CidadesDeMarteII\apCaminhosEmMarte\bin\Debug\apCaminhosEmMarte.exe
+C:\Users\igorr\Documents\Cotuca\ProjetoMarte2\CidadesDeMarteII\apCaminhosEmMarte\bin\Debug\apCaminhosEmMarte.pdb

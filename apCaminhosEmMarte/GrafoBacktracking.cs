@@ -19,7 +19,7 @@ namespace apCidadesBacktracking
         Dictionary<string, int> indicePorNome; //dicionário que relaciona o índice das cidades com o seu nome
         List<string> nomesCidades;
 
-        public GrafoBacktracking(string nomeArquivo)
+        public GrafoBacktracking(string nomeArquivo)  //Construtor original
         {
             using (var arquivo = new StreamReader(nomeArquivo))
             {
@@ -122,8 +122,8 @@ namespace apCidadesBacktracking
 
         public PilhaVetor<Movimento> BuscarCaminho(
                       int origem, int destino, ListBox lsb,
-                      DataGridView dgvGrafo,
-                      DataGridView dgvPilha)
+                      DataGridView dgvGrafo
+                     )
         {
             int cidadeAtual, saidaAtual;
             bool achouCaminho = false,
@@ -213,15 +213,17 @@ namespace apCidadesBacktracking
         {
             if (indicePorNome.ContainsKey(cidadeOrigem) && indicePorNome.ContainsKey(cidadeDestino))
             {
+                //Indice por nome novamente
                 int indiceOrigem = indicePorNome[cidadeOrigem];
                 int indiceDestino = indicePorNome[cidadeDestino];
-
+                
+                //Altera a distância dos indices acima
                 matriz[indiceOrigem, indiceDestino] = novaDistancia;
 
             }
             else
             {
-                MessageBox.Show("Uma das cidades não foi encontrada no grafo.");
+                MessageBox.Show("nem todas as cidades foram encontradas no grafo.");
 
             }
         }
@@ -235,8 +237,6 @@ namespace apCidadesBacktracking
                 int indiceDestino = indicePorNome[cidadeDestino];
 
                 matriz[indiceOrigem, indiceDestino] = -1;
-                matriz[indiceDestino, indiceOrigem] = -1; // Se o grafo for não-direcionado
-
 
             }
             else
