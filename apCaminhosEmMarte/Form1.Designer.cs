@@ -52,6 +52,8 @@
             this.tpCaminhos = new System.Windows.Forms.TabPage();
             this.dgvMelhorCaminho = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lsbCaminhos = new System.Windows.Forms.ListBox();
+            this.dgvCaminhos = new System.Windows.Forms.DataGridView();
             this.btnBuscarCaminhos = new System.Windows.Forms.Button();
             this.btnAlterarCaminho = new System.Windows.Forms.Button();
             this.btnExcluirCaminho = new System.Windows.Forms.Button();
@@ -65,7 +67,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dlgAbrir = new System.Windows.Forms.OpenFileDialog();
-            this.lsbCaminhos = new System.Windows.Forms.ListBox();
+            this.dlgSalvar = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1.SuspendLayout();
             this.tpCidades.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMapa)).BeginInit();
@@ -75,6 +77,7 @@
             this.tpCaminhos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMelhorCaminho)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCaminhos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udDistancia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -86,11 +89,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tpCidades);
             this.tabControl1.Controls.Add(this.tpCaminhos);
-            this.tabControl1.Location = new System.Drawing.Point(5, 2);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Location = new System.Drawing.Point(4, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(916, 446);
+            this.tabControl1.Size = new System.Drawing.Size(859, 550);
             this.tabControl1.TabIndex = 0;
             // 
             // tpCidades
@@ -108,11 +110,10 @@
             this.tpCidades.Controls.Add(this.label2);
             this.tpCidades.Controls.Add(this.label1);
             this.tpCidades.Controls.Add(this.groupBox1);
-            this.tpCidades.Location = new System.Drawing.Point(4, 25);
-            this.tpCidades.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpCidades.Location = new System.Drawing.Point(4, 22);
             this.tpCidades.Name = "tpCidades";
-            this.tpCidades.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tpCidades.Size = new System.Drawing.Size(908, 417);
+            this.tpCidades.Padding = new System.Windows.Forms.Padding(3);
+            this.tpCidades.Size = new System.Drawing.Size(851, 524);
             this.tpCidades.TabIndex = 0;
             this.tpCidades.Text = "Cidades";
             this.tpCidades.UseVisualStyleBackColor = true;
@@ -123,13 +124,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pbMapa.Image = ((System.Drawing.Image)(resources.GetObject("pbMapa.Image")));
-            this.pbMapa.Location = new System.Drawing.Point(367, 74);
-            this.pbMapa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbMapa.Location = new System.Drawing.Point(275, 74);
             this.pbMapa.Name = "pbMapa";
-            this.pbMapa.Size = new System.Drawing.Size(535, 325);
+            this.pbMapa.Size = new System.Drawing.Size(570, 361);
             this.pbMapa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbMapa.TabIndex = 12;
             this.pbMapa.TabStop = false;
+            this.pbMapa.Paint += new System.Windows.Forms.PaintEventHandler(this.pbMapa_Paint);
             // 
             // lsbCidades
             // 
@@ -137,109 +138,105 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lsbCidades.Font = new System.Drawing.Font("Courier New", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsbCidades.FormattingEnabled = true;
-            this.lsbCidades.ItemHeight = 16;
-            this.lsbCidades.Location = new System.Drawing.Point(13, 238);
-            this.lsbCidades.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lsbCidades.ItemHeight = 14;
+            this.lsbCidades.Location = new System.Drawing.Point(10, 193);
             this.lsbCidades.Name = "lsbCidades";
             this.lsbCidades.ScrollAlwaysVisible = true;
-            this.lsbCidades.Size = new System.Drawing.Size(344, 132);
+            this.lsbCidades.Size = new System.Drawing.Size(259, 242);
             this.lsbCidades.Sorted = true;
             this.lsbCidades.TabIndex = 11;
             // 
             // btnListar
             // 
             this.btnListar.Image = ((System.Drawing.Image)(resources.GetObject("btnListar.Image")));
-            this.btnListar.Location = new System.Drawing.Point(197, 192);
-            this.btnListar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnListar.Location = new System.Drawing.Point(148, 156);
             this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(53, 37);
+            this.btnListar.Size = new System.Drawing.Size(40, 30);
             this.btnListar.TabIndex = 10;
             this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
             // 
             // btnBuscar
             // 
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(136, 192);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Location = new System.Drawing.Point(102, 156);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(53, 37);
+            this.btnBuscar.Size = new System.Drawing.Size(40, 30);
             this.btnBuscar.TabIndex = 9;
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnRemover
             // 
-            this.btnRemover.Location = new System.Drawing.Point(75, 192);
-            this.btnRemover.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemover.Location = new System.Drawing.Point(56, 156);
             this.btnRemover.Name = "btnRemover";
-            this.btnRemover.Size = new System.Drawing.Size(53, 37);
+            this.btnRemover.Size = new System.Drawing.Size(40, 30);
             this.btnRemover.TabIndex = 8;
             this.btnRemover.Text = "-";
             this.btnRemover.UseVisualStyleBackColor = true;
+            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
             // btnInserir
             // 
-            this.btnInserir.Location = new System.Drawing.Point(13, 192);
-            this.btnInserir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnInserir.Location = new System.Drawing.Point(10, 156);
             this.btnInserir.Name = "btnInserir";
-            this.btnInserir.Size = new System.Drawing.Size(53, 37);
+            this.btnInserir.Size = new System.Drawing.Size(40, 30);
             this.btnInserir.TabIndex = 7;
             this.btnInserir.Text = "+";
             this.btnInserir.UseVisualStyleBackColor = true;
+            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
             // udY
             // 
             this.udY.DecimalPlaces = 5;
-            this.udY.Location = new System.Drawing.Point(75, 155);
-            this.udY.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.udY.Location = new System.Drawing.Point(67, 128);
             this.udY.Name = "udY";
-            this.udY.Size = new System.Drawing.Size(100, 22);
+            this.udY.Size = new System.Drawing.Size(75, 20);
             this.udY.TabIndex = 6;
             // 
             // udX
             // 
             this.udX.DecimalPlaces = 5;
-            this.udX.Location = new System.Drawing.Point(75, 123);
-            this.udX.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.udX.Location = new System.Drawing.Point(67, 102);
             this.udX.Name = "udX";
-            this.udX.Size = new System.Drawing.Size(100, 22);
+            this.udX.Size = new System.Drawing.Size(75, 20);
             this.udX.TabIndex = 5;
             // 
             // txtCidade
             // 
-            this.txtCidade.Location = new System.Drawing.Point(75, 87);
-            this.txtCidade.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCidade.Location = new System.Drawing.Point(67, 73);
             this.txtCidade.MaxLength = 15;
             this.txtCidade.Name = "txtCidade";
-            this.txtCidade.Size = new System.Drawing.Size(132, 22);
+            this.txtCidade.Size = new System.Drawing.Size(100, 20);
             this.txtCidade.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 158);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label3.Location = new System.Drawing.Point(7, 128);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(19, 16);
+            this.label3.Size = new System.Drawing.Size(21, 17);
             this.label3.TabIndex = 3;
             this.label3.Text = "Y:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 126);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label2.Location = new System.Drawing.Point(7, 102);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(18, 16);
+            this.label2.Size = new System.Drawing.Size(21, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "X:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 91);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label1.Location = new System.Drawing.Point(7, 74);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 16);
+            this.label1.Size = new System.Drawing.Size(56, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Cidade:";
             // 
@@ -253,11 +250,9 @@
             this.groupBox1.Controls.Add(this.rbHashQuadratico);
             this.groupBox1.Controls.Add(this.rbHashLinear);
             this.groupBox1.Controls.Add(this.rbBucketHash);
-            this.groupBox1.Location = new System.Drawing.Point(5, 5);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(897, 66);
+            this.groupBox1.Size = new System.Drawing.Size(844, 54);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " Técnica de Hash desejada ";
@@ -265,10 +260,9 @@
             // btnLerArquivo
             // 
             this.btnLerArquivo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLerArquivo.Location = new System.Drawing.Point(795, 20);
-            this.btnLerArquivo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLerArquivo.Location = new System.Drawing.Point(767, 16);
             this.btnLerArquivo.Name = "btnLerArquivo";
-            this.btnLerArquivo.Size = new System.Drawing.Size(95, 28);
+            this.btnLerArquivo.Size = new System.Drawing.Size(71, 23);
             this.btnLerArquivo.TabIndex = 4;
             this.btnLerArquivo.Text = "Ler Arquivo";
             this.btnLerArquivo.UseVisualStyleBackColor = true;
@@ -277,10 +271,9 @@
             // rbHashDuplo
             // 
             this.rbHashDuplo.AutoSize = true;
-            this.rbHashDuplo.Location = new System.Drawing.Point(499, 23);
-            this.rbHashDuplo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbHashDuplo.Location = new System.Drawing.Point(374, 19);
             this.rbHashDuplo.Name = "rbHashDuplo";
-            this.rbHashDuplo.Size = new System.Drawing.Size(99, 20);
+            this.rbHashDuplo.Size = new System.Drawing.Size(81, 17);
             this.rbHashDuplo.TabIndex = 3;
             this.rbHashDuplo.Text = "Hash Duplo";
             this.rbHashDuplo.UseVisualStyleBackColor = true;
@@ -288,10 +281,9 @@
             // rbHashQuadratico
             // 
             this.rbHashQuadratico.AutoSize = true;
-            this.rbHashQuadratico.Location = new System.Drawing.Point(300, 23);
-            this.rbHashQuadratico.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbHashQuadratico.Location = new System.Drawing.Point(225, 19);
             this.rbHashQuadratico.Name = "rbHashQuadratico";
-            this.rbHashQuadratico.Size = new System.Drawing.Size(164, 20);
+            this.rbHashQuadratico.Size = new System.Drawing.Size(131, 17);
             this.rbHashQuadratico.TabIndex = 2;
             this.rbHashQuadratico.Text = "Sondagem Quadrática";
             this.rbHashQuadratico.UseVisualStyleBackColor = true;
@@ -299,10 +291,9 @@
             // rbHashLinear
             // 
             this.rbHashLinear.AutoSize = true;
-            this.rbHashLinear.Location = new System.Drawing.Point(148, 23);
-            this.rbHashLinear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbHashLinear.Location = new System.Drawing.Point(111, 19);
             this.rbHashLinear.Name = "rbHashLinear";
-            this.rbHashLinear.Size = new System.Drawing.Size(135, 20);
+            this.rbHashLinear.Size = new System.Drawing.Size(108, 17);
             this.rbHashLinear.TabIndex = 1;
             this.rbHashLinear.Text = "Sondagem Linear";
             this.rbHashLinear.UseVisualStyleBackColor = true;
@@ -311,10 +302,9 @@
             // 
             this.rbBucketHash.AutoSize = true;
             this.rbBucketHash.Checked = true;
-            this.rbBucketHash.Location = new System.Drawing.Point(21, 23);
-            this.rbBucketHash.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbBucketHash.Location = new System.Drawing.Point(16, 19);
             this.rbBucketHash.Name = "rbBucketHash";
-            this.rbBucketHash.Size = new System.Drawing.Size(104, 20);
+            this.rbBucketHash.Size = new System.Drawing.Size(87, 17);
             this.rbBucketHash.TabIndex = 0;
             this.rbBucketHash.TabStop = true;
             this.rbBucketHash.Text = "Bucket Hash";
@@ -325,11 +315,10 @@
             this.tpCaminhos.Controls.Add(this.dgvMelhorCaminho);
             this.tpCaminhos.Controls.Add(this.groupBox2);
             this.tpCaminhos.Controls.Add(this.pictureBox1);
-            this.tpCaminhos.Location = new System.Drawing.Point(4, 25);
-            this.tpCaminhos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpCaminhos.Location = new System.Drawing.Point(4, 22);
             this.tpCaminhos.Name = "tpCaminhos";
-            this.tpCaminhos.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tpCaminhos.Size = new System.Drawing.Size(908, 417);
+            this.tpCaminhos.Padding = new System.Windows.Forms.Padding(3);
+            this.tpCaminhos.Size = new System.Drawing.Size(851, 524);
             this.tpCaminhos.TabIndex = 1;
             this.tpCaminhos.Text = "Caminhos";
             this.tpCaminhos.UseVisualStyleBackColor = true;
@@ -340,16 +329,16 @@
             this.dgvMelhorCaminho.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvMelhorCaminho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMelhorCaminho.Location = new System.Drawing.Point(367, 272);
-            this.dgvMelhorCaminho.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvMelhorCaminho.Location = new System.Drawing.Point(377, 390);
             this.dgvMelhorCaminho.Name = "dgvMelhorCaminho";
             this.dgvMelhorCaminho.RowHeadersWidth = 51;
-            this.dgvMelhorCaminho.Size = new System.Drawing.Size(535, 64);
+            this.dgvMelhorCaminho.Size = new System.Drawing.Size(465, 108);
             this.dgvMelhorCaminho.TabIndex = 15;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lsbCaminhos);
+            this.groupBox2.Controls.Add(this.dgvCaminhos);
             this.groupBox2.Controls.Add(this.btnBuscarCaminhos);
             this.groupBox2.Controls.Add(this.btnAlterarCaminho);
             this.groupBox2.Controls.Add(this.btnExcluirCaminho);
@@ -362,21 +351,38 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(9, 9);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Location = new System.Drawing.Point(7, 7);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(349, 394);
+            this.groupBox2.Size = new System.Drawing.Size(364, 500);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Caminhos";
             // 
+            // lsbCaminhos
+            // 
+            this.lsbCaminhos.FormattingEnabled = true;
+            this.lsbCaminhos.ItemHeight = 18;
+            this.lsbCaminhos.Location = new System.Drawing.Point(10, 360);
+            this.lsbCaminhos.Margin = new System.Windows.Forms.Padding(2);
+            this.lsbCaminhos.Name = "lsbCaminhos";
+            this.lsbCaminhos.Size = new System.Drawing.Size(349, 130);
+            this.lsbCaminhos.TabIndex = 16;
+            // 
+            // dgvCaminhos
+            // 
+            this.dgvCaminhos.AllowUserToAddRows = false;
+            this.dgvCaminhos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCaminhos.Location = new System.Drawing.Point(6, 142);
+            this.dgvCaminhos.Name = "dgvCaminhos";
+            this.dgvCaminhos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgvCaminhos.Size = new System.Drawing.Size(352, 213);
+            this.dgvCaminhos.TabIndex = 12;
+            // 
             // btnBuscarCaminhos
             // 
-            this.btnBuscarCaminhos.Location = new System.Drawing.Point(249, 5);
-            this.btnBuscarCaminhos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscarCaminhos.Location = new System.Drawing.Point(208, 20);
             this.btnBuscarCaminhos.Name = "btnBuscarCaminhos";
-            this.btnBuscarCaminhos.Size = new System.Drawing.Size(96, 42);
+            this.btnBuscarCaminhos.Size = new System.Drawing.Size(72, 34);
             this.btnBuscarCaminhos.TabIndex = 11;
             this.btnBuscarCaminhos.Text = "Buscar";
             this.btnBuscarCaminhos.UseVisualStyleBackColor = true;
@@ -384,10 +390,9 @@
             // 
             // btnAlterarCaminho
             // 
-            this.btnAlterarCaminho.Location = new System.Drawing.Point(309, 139);
-            this.btnAlterarCaminho.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAlterarCaminho.Location = new System.Drawing.Point(232, 113);
             this.btnAlterarCaminho.Name = "btnAlterarCaminho";
-            this.btnAlterarCaminho.Size = new System.Drawing.Size(36, 28);
+            this.btnAlterarCaminho.Size = new System.Drawing.Size(27, 23);
             this.btnAlterarCaminho.TabIndex = 9;
             this.btnAlterarCaminho.Text = "#";
             this.btnAlterarCaminho.UseVisualStyleBackColor = true;
@@ -395,10 +400,9 @@
             // 
             // btnExcluirCaminho
             // 
-            this.btnExcluirCaminho.Location = new System.Drawing.Point(265, 139);
-            this.btnExcluirCaminho.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExcluirCaminho.Location = new System.Drawing.Point(199, 113);
             this.btnExcluirCaminho.Name = "btnExcluirCaminho";
-            this.btnExcluirCaminho.Size = new System.Drawing.Size(36, 28);
+            this.btnExcluirCaminho.Size = new System.Drawing.Size(27, 23);
             this.btnExcluirCaminho.TabIndex = 8;
             this.btnExcluirCaminho.Text = "-";
             this.btnExcluirCaminho.UseVisualStyleBackColor = true;
@@ -406,10 +410,9 @@
             // 
             // btnIncluirCaminho
             // 
-            this.btnIncluirCaminho.Location = new System.Drawing.Point(221, 139);
-            this.btnIncluirCaminho.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIncluirCaminho.Location = new System.Drawing.Point(166, 113);
             this.btnIncluirCaminho.Name = "btnIncluirCaminho";
-            this.btnIncluirCaminho.Size = new System.Drawing.Size(36, 28);
+            this.btnIncluirCaminho.Size = new System.Drawing.Size(27, 23);
             this.btnIncluirCaminho.TabIndex = 7;
             this.btnIncluirCaminho.Text = "+";
             this.btnIncluirCaminho.UseVisualStyleBackColor = true;
@@ -417,67 +420,60 @@
             // 
             // udDistancia
             // 
-            this.udDistancia.Location = new System.Drawing.Point(116, 135);
-            this.udDistancia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.udDistancia.Location = new System.Drawing.Point(87, 110);
             this.udDistancia.Name = "udDistancia";
-            this.udDistancia.Size = new System.Drawing.Size(100, 28);
+            this.udDistancia.Size = new System.Drawing.Size(75, 24);
             this.udDistancia.TabIndex = 6;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 139);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(7, 113);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(90, 24);
+            this.label7.Size = new System.Drawing.Size(73, 18);
             this.label7.TabIndex = 5;
             this.label7.Text = "Distância:";
             // 
             // cbxDestino
             // 
             this.cbxDestino.FormattingEnabled = true;
-            this.cbxDestino.Location = new System.Drawing.Point(183, 91);
-            this.cbxDestino.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxDestino.Location = new System.Drawing.Point(137, 74);
             this.cbxDestino.Name = "cbxDestino";
-            this.cbxDestino.Size = new System.Drawing.Size(160, 30);
+            this.cbxDestino.Size = new System.Drawing.Size(121, 26);
             this.cbxDestino.TabIndex = 4;
             // 
             // cbxOrigem
             // 
             this.cbxOrigem.FormattingEnabled = true;
-            this.cbxOrigem.Location = new System.Drawing.Point(13, 91);
-            this.cbxOrigem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxOrigem.Location = new System.Drawing.Point(10, 74);
             this.cbxOrigem.Name = "cbxOrigem";
-            this.cbxOrigem.Size = new System.Drawing.Size(160, 30);
+            this.cbxOrigem.Size = new System.Drawing.Size(121, 26);
             this.cbxOrigem.TabIndex = 3;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(179, 64);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(134, 52);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 24);
+            this.label6.Size = new System.Drawing.Size(59, 18);
             this.label6.TabIndex = 2;
             this.label6.Text = "Destino";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 64);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(7, 52);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 24);
+            this.label5.Size = new System.Drawing.Size(57, 18);
             this.label5.TabIndex = 1;
             this.label5.Text = "Origem";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 25);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(7, 20);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 24);
+            this.label4.Size = new System.Drawing.Size(68, 18);
             this.label4.TabIndex = 0;
             this.label4.Text = "Ligações";
             // 
@@ -487,10 +483,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(367, 7);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(377, 18);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(535, 257);
+            this.pictureBox1.Size = new System.Drawing.Size(465, 353);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
@@ -500,24 +495,14 @@
             this.dlgAbrir.DefaultExt = "*.txt";
             this.dlgAbrir.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // lsbCaminhos
-            // 
-            this.lsbCaminhos.FormattingEnabled = true;
-            this.lsbCaminhos.ItemHeight = 22;
-            this.lsbCaminhos.Location = new System.Drawing.Point(7, 184);
-            this.lsbCaminhos.Name = "lsbCaminhos";
-            this.lsbCaminhos.Size = new System.Drawing.Size(313, 202);
-            this.lsbCaminhos.TabIndex = 16;
-            // 
             // FrmCaminhos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(920, 448);
+            this.ClientSize = new System.Drawing.Size(862, 552);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmCaminhos";
-            this.Text = "Caminhos em Marte - Ra1 - Ra2";
+            this.Text = "Caminhos em Marte - 23121- 23579";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCaminhos_FormClosing);
             this.Load += new System.EventHandler(this.FrmCaminhos_Load);
             this.tabControl1.ResumeLayout(false);
@@ -532,6 +517,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMelhorCaminho)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCaminhos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.udDistancia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -577,6 +563,8 @@
     private System.Windows.Forms.DataGridView dgvMelhorCaminho;
         private System.Windows.Forms.Button btnBuscarCaminhos;
         private System.Windows.Forms.ListBox lsbCaminhos;
+        private System.Windows.Forms.SaveFileDialog dlgSalvar;
+        private System.Windows.Forms.DataGridView dgvCaminhos;
     }
 }
 

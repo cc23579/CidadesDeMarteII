@@ -16,15 +16,16 @@ namespace apCidadesBacktracking
         char tipoGrafo;
         int qtasCidades;
         int[,] matriz;
-        Dictionary<string, int> indicePorNome; //dicionário que relaciona o índice das cidades com o seu nome
+        public Dictionary<string, int> indicePorNome; //dicionário que relaciona o índice das cidades com o seu nome
         List<string> nomesCidades;
 
         public GrafoBacktracking(string nomeArquivo)  //Construtor original
         {
             using (var arquivo = new StreamReader(nomeArquivo))
             {
-                tipoGrafo = arquivo.ReadLine()[0]; // acessa primeiro caracter com tipo do grafo
-                qtasCidades = int.Parse(arquivo.ReadLine());
+                var linhas = File.ReadAllLines(nomeArquivo).ToList();
+                tipoGrafo = linhas[0][0]; // acessa primeiro caracter com tipo do grafo
+                qtasCidades = linhas.Count - 1; // subtrai 1 para a linha do tipo de grafo
                 matriz = new int[qtasCidades, qtasCidades];
                 indicePorNome = new Dictionary<string, int>();
                 nomesCidades = new List<string>();
@@ -41,16 +42,16 @@ namespace apCidadesBacktracking
                 string linhaAtual;
                 while ((linhaAtual = arquivo.ReadLine()) != null)
                 {
-                    string[] partes = linhaAtual.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-                    if (partes.Length < 3)
+                    // Garantir que a linha tem pelo menos 35 caracteres
+                    if (linhaAtual.Length < 35)
                     {
                         continue; // Ignora linhas que não têm todas as informações necessárias
                     }
 
-                    string cidadeOrigem = partes[0];
-                    string cidadeDestino = partes[1];
-                    int distancia = int.Parse(partes[2]);
+                    // Extrair as informações com base nas posições fixas
+                    string cidadeOrigem = linhaAtual.Substring(0, 15).Trim();
+                    string cidadeDestino = linhaAtual.Substring(15, 15).Trim();
+                    int distancia = int.Parse(linhaAtual.Substring(30, 5).Trim());
 
                     // Adicionar as cidades e seus índices ao dicionário e lista
                     AdicionarCidade(cidadeOrigem);
@@ -81,6 +82,8 @@ namespace apCidadesBacktracking
 
         public void Exibir(DataGridView dgv)
         {
+
+
             dgv.RowCount = dgv.ColumnCount = qtasCidades;
             for (int coluna = 0; coluna < qtasCidades; coluna++)
             {
@@ -91,23 +94,37 @@ namespace apCidadesBacktracking
             for (int linha = 0; linha < qtasCidades; linha++)
                 for (int coluna = 0; coluna < qtasCidades; coluna++)
                     if (matriz[linha, coluna] != 0)
-                        dgv[coluna, linha].Value = matriz[linha, coluna];
+                        if (matriz[linha, coluna] != -1)
+                        {
+                            dgv[coluna, linha].Value = matriz[linha, coluna];
+                        }
+
+                        else
+                        {
+                            dgv[coluna, linha].Value = "";  // Deixa em branco se for -1
+                        }
         }
+
+
+
 
         public void AdicionarCaminho(Cidade cidadeOrigem, Cidade cidadeDestino, int distancia)
         {
             // Verificar se as cidades já existem na matriz
-            if (!indicePorNome.ContainsKey(cidadeOrigem.Nome()) || !indicePorNome.ContainsKey(cidadeDestino.Nome()))
+            string cidadeOri = cidadeOrigem.Nome().Trim();
+            string cidadeDes = cidadeDestino.Nome().Trim();
+
+            if (!indicePorNome.ContainsKey(cidadeOri) || !indicePorNome.ContainsKey(cidadeDes))
             {
                 throw new Exception("Cidades não estão presentes no grafo.");
             }
 
             // Obter os índices das cidades na matriz
-            int indiceOrigem = indicePorNome[cidadeOrigem.Nome()];
-            int indiceDestino = indicePorNome[cidadeDestino.Nome()];
+            int indiceOrigem = indicePorNome[cidadeOri];
+            int indiceDestino = indicePorNome[cidadeDes];
 
             // Verificar se já existe um caminho entre as cidades
-            if (matriz[indiceOrigem, indiceDestino] != -1 || matriz[indiceDestino, indiceOrigem] != -1)
+            if (matriz[indiceOrigem, indiceDestino] == -1 || matriz[indiceDestino, indiceOrigem] == -1)
             {
                 // Se já existe um caminho, atualiza a distância
                 matriz[indiceOrigem, indiceDestino] = distancia;
@@ -216,7 +233,7 @@ namespace apCidadesBacktracking
                 //Indice por nome novamente
                 int indiceOrigem = indicePorNome[cidadeOrigem];
                 int indiceDestino = indicePorNome[cidadeDestino];
-                
+
                 //Altera a distância dos indices acima
                 matriz[indiceOrigem, indiceDestino] = novaDistancia;
 
@@ -245,5 +262,76 @@ namespace apCidadesBacktracking
 
             }
         }
+
+        public void SalvarGrafoEmArquivo(string nomeArquivo)
+        {
+            using (var arquivo = new StreamWriter(nomeArquivo))
+            {
+                // Escreve o tipo do grafo na primeira linha do arquivo
+                arquivo.WriteLine(tipoGrafo);
+                for (int i = 0; i < qtasCidades; i++)
+                {
+                    for (int j = 0; j < qtasCidades; j++)
+                    {
+                        if (matriz[i, j] != -1) // Se a distância não é -1, há um caminho
+                        {
+                            string nomeCidadeOrigem = nomesCidades[i];
+                            string nomeCidadeDestino = nomesCidades[j];
+                            int distancia = matriz[i, j];
+
+                            string linha = $"{nomeCidadeOrigem.PadRight(15)}{nomeCidadeDestino.PadRight(15)}{distancia.ToString().PadLeft(5)}";
+                            arquivo.WriteLine(linha);
+                        }
+                    }
+                }
+            }
+        }
+        //Metodos que poderiam fazer o papel semelhante ao dicionario
+
+        /* 
+     public int ObterIndicePorNome(string nomeCidade)
+     {
+         for (int i = 0; i < nomesCidades.Count; i++)
+         {
+             if (CompararStrings(nomesCidades[i], nomeCidade))
+             {
+                 return i;
+             }
+         }
+         throw new Exception("Cidade não encontrada no grafo.");
+     }
+
+     public string ObterNomePorIndice(int indice)
+     {
+         if (indice >= 0 && indice < nomesCidades.Count)
+         {
+             return nomesCidades[indice];
+         }
+         else
+         {
+             throw new Exception("Índice fora do intervalo válido.");
+         }
+     }
+
+     public bool CompararStrings(string texto1, string texto2 )
+     {
+         if (texto1.Length != texto2.Length)
+         {
+             return false;
+         }
+
+         for (int i = 0; i < texto1.Length; i++)
+         {
+             if (texto1[i] != texto2[i])
+             {
+                 return false;
+             }
+         }
+
+         return true;
+     }
+        */
+
+
     }
 }
